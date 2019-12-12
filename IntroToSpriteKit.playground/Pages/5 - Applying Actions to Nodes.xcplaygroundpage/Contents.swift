@@ -86,13 +86,19 @@ scene.addChild(circle4)
  */
 
 // Define an action that causes a node to wait (do nothing)
-let actionFiveSecondWait = SKAction.wait(forDuration: 5.0)
+let actionFiveSecondWait = SKAction.wait(forDuration: 1.0)
 
 // Define a vector that describes an upward movement
 let upThisMuch = CGVector(dx: 0, dy: 250)
 
 // Define an action that causes a node to move up for half a second
 let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0.5)
+
+// Define a vector that describes an upward movement
+let rightThisMuch = CGVector(dx: 250, dy: 0)
+
+// Define an action that causes a node to move up for half a second
+let actionRightMovement = SKAction.move(by: rightThisMuch, duration: 0.5)
 
 /*:
  
@@ -139,7 +145,7 @@ let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0.5)
 //let actionScaleUp = SKAction.scale(by: 2.0, duration: 2)
 //let actionFadeOut = SKAction.fadeOut(withDuration: 2)
 //let actionScaleUpAndFadeOut = SKAction.group([actionScaleUp, actionFadeOut])
-//
+
 //// Grouped actions to get small and fade in
 //let actionScaleDown = SKAction.scale(by: 0.5, duration: 2)
 //let actionFadeIn = SKAction.fadeIn(withDuration: 2)
@@ -177,6 +183,8 @@ let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0.5)
 
 // Exercise 1: Write your code below.
 
+let veryLongWaitThenMoveRight = SKAction.sequence([actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait, actionRightMovement])
+circle1.run(veryLongWaitThenMoveRight)
 
 // Exercise 2: Write your code below.
 
