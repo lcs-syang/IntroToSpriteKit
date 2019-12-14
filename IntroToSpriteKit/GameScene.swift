@@ -114,8 +114,9 @@ class GameScene: SKScene {
         textH.text = "M"
         textH.position = CGPoint(x: 400, y: 650)
         textH.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
-        textH.run(actionThreeSecondWait)
         self.addChild(textH)
+        let actionThreeSecondWaitThenMoveUp = SKAction.sequence([actionThreeSecondWait, actionUpwardsMovement])
+        textH.run(actionThreeSecondWaitThenMoveUp)
         
         // E
         let textE = SKLabelNode(fontNamed: "Helvetica Neue Light")
