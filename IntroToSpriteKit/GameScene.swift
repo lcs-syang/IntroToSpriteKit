@@ -43,9 +43,11 @@ class GameScene: SKScene {
         }
         
         // Snowman 1
-        let snowman1 = SKSpriteNode(imageNamed: "SnowMan")
-        snowman1.position = CGPoint(x: 50 , y: 200)
+        let snowman1 = SKSpriteNode(imageNamed: "snowman-1")
+        snowman1.position = CGPoint(x: 50 , y: 150)
         self.addChild(snowman1)
+        
+        
         // Get a reference to the mp3 file in the app bundle
         let backgroundMusicFilePath = Bundle.main.path(forResource: "sleigh-bells-excerpt.mp3", ofType: nil)!
         
