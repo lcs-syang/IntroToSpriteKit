@@ -127,6 +127,37 @@ class GameScene: SKScene {
         textE.run(actionThreeSecondWait)
         self.addChild(textE)
         
+        // R
+        let textR = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        textR.fontSize = 48
+        textR.fontColor = .white
+        textR.text = "R"
+        textR.position = CGPoint(x: 465, y: 650)
+        textR.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
+        textR.run(actionThreeSecondWait)
+        self.addChild(textR)
+        
+        // R
+        let textR1 = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        textR1.fontSize = 48
+        textR1.fontColor = .white
+        textR1.text = "R"
+        textR1.position = CGPoint(x: 495, y: 650)
+        textR1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
+        textR1.run(actionThreeSecondWait)
+        self.addChild(textR1)
+        
+        // Y
+        let textY = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        textY.fontSize = 48
+        textY.fontColor = .white
+        textY.text = "Y"
+        textY.position = CGPoint(x: 525, y: 650)
+        textY.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
+        textY.run(actionThreeSecondWait)
+        self.addChild(textY)
+        
+        
         
             
         let wordsPhysicsBodyLocation = CGRect(x: 0, y: 400, width: 800, height: 600)
