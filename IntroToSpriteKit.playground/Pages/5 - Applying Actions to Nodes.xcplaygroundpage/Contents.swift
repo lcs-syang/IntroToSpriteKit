@@ -94,11 +94,17 @@ let upThisMuch = CGVector(dx: 0, dy: 250)
 // Define an action that causes a node to move up for half a second
 let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0.5)
 
-// Define a vector that describes an upward movement
+// Define a vector that describes an right movement
 let rightThisMuch = CGVector(dx: 250, dy: 0)
 
-// Define an action that causes a node to move up for half a second
+// Define an action that causes a node to move right for half a second
 let actionRightMovement = SKAction.move(by: rightThisMuch, duration: 0.5)
+
+// Define a vector that describes an left movement
+let leftThisMuch = CGVector(dx: 250, dy: 250)
+
+// Define an action that causes a node to move left for half a second
+let actionLeftMovement = SKAction.move(by: leftThisMuch, duration: 0.5)
 
 /*:
  
@@ -187,7 +193,8 @@ let veryLongWaitThenMoveRight = SKAction.sequence([actionFiveSecondWait, actionF
 circle1.run(veryLongWaitThenMoveRight)
 
 // Exercise 2: Write your code below.
-
+let veryLongWaitThenMoveLeft = SKAction.sequence([actionFiveSecondWait, actionFiveSecondWait, actionFiveSecondWait,actionFiveSecondWait, actionLeftMovement])
+circle2.run(veryLongWaitThenMoveLeft)
 
 // Exercise 3: Write your code below.
 

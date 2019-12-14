@@ -19,8 +19,33 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         // Set the background colour
-        self.backgroundColor = .black
+        let background = SKSpriteNode(imageNamed: "sky_01")
+        background.position = CGPoint(x:self.size.width / 2, y: self.size.height / 2)
+        self.addChild(background)
         
+        // Add the sun
+        let sun = SKSpriteNode(imageNamed: "sun")
+        sun.position = CGPoint(x: self.size.width / 6 , y: 450)
+        self.addChild(sun)
+        
+        // Add christmas tree
+        let tree = SKSpriteNode(imageNamed: "tree1")
+        tree.position = CGPoint(x: self.size.width / 2, y: 200)
+        let scaleUp = SKAction.scale(by: 2, duration: 0)
+        tree.run(scaleUp)
+        self.addChild(tree)
+        
+        // Loop for the ground
+        for i in 0...14 {
+            let groundTile = SKSpriteNode(imageNamed: "ground")
+            groundTile.position = CGPoint(x: 0 + groundTile.size.width * CGFloat(i) , y: 30)
+            self.addChild(groundTile)
+        }
+        
+        // Snowman 1
+        let snowman1 = SKSpriteNode(imageNamed: "SnowMan")
+        snowman1.position = CGPoint(x: 50 , y: 200)
+        self.addChild(snowman1)
         // Get a reference to the mp3 file in the app bundle
         let backgroundMusicFilePath = Bundle.main.path(forResource: "sleigh-bells-excerpt.mp3", ofType: nil)!
         
