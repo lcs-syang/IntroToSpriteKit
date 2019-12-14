@@ -23,6 +23,9 @@ class GameScene: SKScene {
         background.position = CGPoint(x:self.size.width / 2, y: self.size.height / 2)
         self.addChild(background)
         
+
+        
+
         // Add the sun
         let sun = SKSpriteNode(imageNamed: "sun")
         sun.position = CGPoint(x: self.size.width / 6 , y: 450)
@@ -39,13 +42,26 @@ class GameScene: SKScene {
         for i in 0...14 {
             let groundTile = SKSpriteNode(imageNamed: "ground")
             groundTile.position = CGPoint(x: 0 + groundTile.size.width * CGFloat(i) , y: 30)
+            // Add an edge loop physics body to the scene, so nodes with physics bodies do not fall off the screen
+            let groundTilePhysicsBodyLocation = CGRect(x:0, y: 0, width: 800, height: 100) 
+            groundTile.physicsBody = SKPhysicsBody(edgeLoopFrom: groundTilePhysicsBodyLocation)
             self.addChild(groundTile)
         }
         
         // Snowman 1
         let snowman1 = SKSpriteNode(imageNamed: "snowman-1")
         snowman1.position = CGPoint(x: 50 , y: 150)
+        snowman1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 30))
         self.addChild(snowman1)
+        
+        // Define a vector that describes an upward movement
+        let upThisMuch = CGVector(dx: 0, dy: 250)
+
+        // Define an action that causes a node to move up for half a second
+        let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0)
+        
+        // let the snowman1 move up right a way
+        snowman1.run(actionUpwardsMovement)
         
         
         // Get a reference to the mp3 file in the app bundle
