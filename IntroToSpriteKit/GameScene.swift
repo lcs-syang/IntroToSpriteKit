@@ -49,7 +49,7 @@ class GameScene: SKScene {
         }
         
         // define action for waiting
-        let actionShortWait = SKAction.wait(forDuration: 3)
+        let actionShortWait = SKAction.wait(forDuration: 2)
         
         // Snowman 1
         let snowman1 = SKSpriteNode(imageNamed: "snowman-1")
@@ -58,7 +58,7 @@ class GameScene: SKScene {
         self.addChild(snowman1)
         
         // Define a vector that describes an upward movement
-        let upThisMuch = CGVector(dx: 0, dy: 250)
+        let upThisMuch = CGVector(dx: 0, dy: 200)
 
         // Define an action that causes a node to move up for half a second
         let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0)
@@ -75,6 +75,16 @@ class GameScene: SKScene {
         // wait three second and move up
         let actionShortWaitThenMoveUp = SKAction.sequence([actionShortWait, actionUpwardsMovement])
         snowman2.run(actionShortWaitThenMoveUp)
+        
+        // Snowman 3
+        let snowman3 = SKSpriteNode(imageNamed: "snowman-1")
+        snowman3.position = CGPoint(x: 550, y: 150)
+        snowman3.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 30))
+        self.addChild(snowman3)
+        
+        // move up right away
+        snowman3.run(actionUpwardsMovement)
+        
         
         // Get a reference to the mp3 file in the app bundle
         let backgroundMusicFilePath = Bundle.main.path(forResource: "sleigh-bells-excerpt.mp3", ofType: nil)!
