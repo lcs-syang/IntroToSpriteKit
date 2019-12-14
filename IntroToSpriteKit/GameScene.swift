@@ -42,11 +42,14 @@ class GameScene: SKScene {
         for i in 0...14 {
             let groundTile = SKSpriteNode(imageNamed: "ground")
             groundTile.position = CGPoint(x: 0 + groundTile.size.width * CGFloat(i) , y: 30)
-            // Add an edge loop physics body to the scene, so nodes with physics bodies do not fall off the screen
-            let groundTilePhysicsBodyLocation = CGRect(x:0, y: 0, width: 800, height: 100) 
+            // Add an edge loop physics body to the ground, so nodes with physics bodies do not fall off the screen
+            let groundTilePhysicsBodyLocation = CGRect(x:0, y: 0, width: 800, height: 100)
             groundTile.physicsBody = SKPhysicsBody(edgeLoopFrom: groundTilePhysicsBodyLocation)
             self.addChild(groundTile)
         }
+        
+        // define action for waiting
+        let actionShortWait = SKAction.wait(forDuration: 3)
         
         // Snowman 1
         let snowman1 = SKSpriteNode(imageNamed: "snowman-1")
@@ -63,6 +66,15 @@ class GameScene: SKScene {
         // let the snowman1 move up right a way
         snowman1.run(actionUpwardsMovement)
         
+        // Snowman 2
+        let snowman2 = SKSpriteNode(imageNamed: "snowman-1")
+        snowman2.position = CGPoint(x: 250, y: 150)
+        snowman2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height:30))
+        self.addChild(snowman2)
+        
+        // wait three second and move up
+        let actionShortWaitThenMoveUp = SKAction.sequence([actionShortWait, actionUpwardsMovement])
+        snowman2.run(actionShortWaitThenMoveUp)
         
         // Get a reference to the mp3 file in the app bundle
         let backgroundMusicFilePath = Bundle.main.path(forResource: "sleigh-bells-excerpt.mp3", ofType: nil)!
