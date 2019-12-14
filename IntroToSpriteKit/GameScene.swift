@@ -22,9 +22,6 @@ class GameScene: SKScene {
         let background = SKSpriteNode(imageNamed: "sky_01")
         background.position = CGPoint(x:self.size.width / 2, y: self.size.height / 2)
         self.addChild(background)
-        
-
-        
 
         // Add the sun
         let sun = SKSpriteNode(imageNamed: "sun")
@@ -50,8 +47,9 @@ class GameScene: SKScene {
         }
         
         // define action for waiting
-        let actionShortWait = SKAction.wait(forDuration: 2)
+        let actionTwoSecondWait = SKAction.wait(forDuration: 2)
         //let actionOneSecondWait = SKAction.wait(forDuration: 1)
+        let actionThreeSecondWait = SKAction.wait(forDuration: 3)
         
         // Snowman 1
         let snowman1 = SKSpriteNode(imageNamed: "snowman-1")
@@ -73,7 +71,7 @@ class GameScene: SKScene {
         snowman2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height:30))
         self.addChild(snowman2)
         // wait two second and move up
-        let actionShortWaitThenMoveUp = SKAction.sequence([actionShortWait, actionUpwardsMovement])
+        let actionShortWaitThenMoveUp = SKAction.sequence([actionTwoSecondWait, actionUpwardsMovement])
         snowman2.run(actionShortWaitThenMoveUp)
         
         // Snowman 3
@@ -110,15 +108,27 @@ class GameScene: SKScene {
         
         /// texts
         // H
-        let text = SKLabelNode(fontNamed: "Rockwell")
-        text.fontSize = 36
-        text.fontColor = .white
-        text.text = "H"
-        text.position = CGPoint(x: 400, y: 650)
-        text.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
-        self.addChild(text)
+        let textH = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        textH.fontSize = 48
+        textH.fontColor = .white
+        textH.text = "M"
+        textH.position = CGPoint(x: 400, y: 650)
+        textH.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
+        textH.run(actionThreeSecondWait)
+        self.addChild(textH)
+        
+        // E
+        let textE = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        textE.fontSize = 48
+        textE.fontColor = .white
+        textE.text = "E"
+        textE.position = CGPoint(x: 435, y: 650)
+        textE.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
+        textE.run(actionThreeSecondWait)
+        self.addChild(textE)
         
         
+            
         let wordsPhysicsBodyLocation = CGRect(x: 0, y: 400, width: 800, height: 600)
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: wordsPhysicsBodyLocation)
         
