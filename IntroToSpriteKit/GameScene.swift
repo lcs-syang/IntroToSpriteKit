@@ -38,6 +38,7 @@ class GameScene: SKScene {
         tree.run(scaleUp)
         self.addChild(tree)
         
+        
         // Loop for the ground
         for i in 0...14 {
             let groundTile = SKSpriteNode(imageNamed: "ground")
@@ -50,6 +51,7 @@ class GameScene: SKScene {
         
         // define action for waiting
         let actionShortWait = SKAction.wait(forDuration: 2)
+        //let actionOneSecondWait = SKAction.wait(forDuration: 1)
         
         // Snowman 1
         let snowman1 = SKSpriteNode(imageNamed: "snowman-1")
@@ -60,7 +62,9 @@ class GameScene: SKScene {
         let upThisMuch = CGVector(dx: 0, dy: 200)
         // Define an action that causes a node to move up for half a second
         let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0)
-        // let the snowman1 move up right a way
+        // repeat upwards movement
+        //let actionRepeatUpwardsMovement = SKAction.repeatForever(actionUpwardsMovement)
+        // repeat jump
         snowman1.run(actionUpwardsMovement)
         
         // Snowman 2
@@ -89,7 +93,6 @@ class GameScene: SKScene {
         // wait for 2 seconds and move up at the same time with snowman 2
         snowman4.run(actionShortWaitThenMoveUp)
         
-        
         // Get a reference to the mp3 file in the app bundle
         let backgroundMusicFilePath = Bundle.main.path(forResource: "sleigh-bells-excerpt.mp3", ofType: nil)!
         
@@ -103,6 +106,23 @@ class GameScene: SKScene {
         } catch {
             // Do nothing if the sound file could not be played
         }
+        
+        
+        /// texts
+        // H
+        let text = SKLabelNode(fontNamed: "Rockwell")
+        text.fontSize = 36
+        text.fontColor = .white
+        text.text = "H"
+        text.position = CGPoint(x: 400, y: 650)
+        text.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
+        self.addChild(text)
+        
+        
+        let wordsPhysicsBodyLocation = CGRect(x: 0, y: 400, width: 800, height: 600)
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: wordsPhysicsBodyLocation)
+        
+        
 
     }
     
