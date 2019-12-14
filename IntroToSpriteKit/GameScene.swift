@@ -56,13 +56,10 @@ class GameScene: SKScene {
         snowman1.position = CGPoint(x: 50 , y: 150)
         snowman1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 30))
         self.addChild(snowman1)
-        
         // Define a vector that describes an upward movement
         let upThisMuch = CGVector(dx: 0, dy: 200)
-
         // Define an action that causes a node to move up for half a second
         let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0)
-        
         // let the snowman1 move up right a way
         snowman1.run(actionUpwardsMovement)
         
@@ -71,8 +68,7 @@ class GameScene: SKScene {
         snowman2.position = CGPoint(x: 250, y: 150)
         snowman2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height:30))
         self.addChild(snowman2)
-        
-        // wait three second and move up
+        // wait two second and move up
         let actionShortWaitThenMoveUp = SKAction.sequence([actionShortWait, actionUpwardsMovement])
         snowman2.run(actionShortWaitThenMoveUp)
         
@@ -81,9 +77,17 @@ class GameScene: SKScene {
         snowman3.position = CGPoint(x: 550, y: 150)
         snowman3.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 30))
         self.addChild(snowman3)
-        
-        // move up right away
+        // move up right away at the same time with snowman 1
         snowman3.run(actionUpwardsMovement)
+        
+        
+        // Snowman 4
+        let snowman4 = SKSpriteNode(imageNamed: "snowman-1")
+        snowman4.position = CGPoint(x: 750, y: 150)
+        snowman4.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 30))
+        self.addChild(snowman4)
+        // wait for 2 seconds and move up at the same time with snowman 2
+        snowman4.run(actionShortWaitThenMoveUp)
         
         
         // Get a reference to the mp3 file in the app bundle
