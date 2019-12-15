@@ -120,7 +120,7 @@ class GameScene: SKScene {
         
         /// texts
         // H
-        let textM = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        let textM = SKLabelNode(fontNamed: "Brush Script MT")
         textM.fontSize = 48
         textM.fontColor = .white
         textM.text = "M"
@@ -131,7 +131,7 @@ class GameScene: SKScene {
         textM.run(actionThreeSecondWaitThenMoveUp)
         
         // E
-        let textE = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        let textE = SKLabelNode(fontNamed: "Brush Script MT")
         textE.fontSize = 48
         textE.fontColor = .white
         textE.text = "E"
@@ -142,7 +142,7 @@ class GameScene: SKScene {
         textE.run(actionLongWaitThenMoveUp)
         
         // R
-        let textR = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        let textR = SKLabelNode(fontNamed: "Brush Script MT")
         textR.fontSize = 48
         textR.fontColor = .white
         textR.text = "R"
@@ -153,7 +153,7 @@ class GameScene: SKScene {
         textR.run(actionJumpAfterE)
         
         // R
-        let textR1 = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        let textR1 = SKLabelNode(fontNamed: "Brush Script MT")
         textR1.fontSize = 48
         textR1.fontColor = .white
         textR1.text = "R"
@@ -164,7 +164,7 @@ class GameScene: SKScene {
         textR1.run(actionJumpAfterR)
         
         // Y
-        let textY = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        let textY = SKLabelNode(fontNamed: "Brush Script MT")
         textY.fontSize = 48
         textY.fontColor = .white
         textY.text = "Y"
@@ -175,7 +175,7 @@ class GameScene: SKScene {
         textY.run(actionJumpAfterR1)
         
         // Word "Christmas"
-        let word = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        let word = SKLabelNode(fontNamed: "Brush Script MT")
         word.fontSize = 48
         word.fontColor = .white
         word.text = "CHRISTMAS"
