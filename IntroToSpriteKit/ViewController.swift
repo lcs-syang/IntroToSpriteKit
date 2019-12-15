@@ -37,6 +37,9 @@ class ViewController: NSViewController {
         // (The fewer nodes the better for performance reasons)
         self.skView.showsNodeCount = true
         
+        // Show Physics Bodies
+        self.skView.showsPhysics = false
+        
         // Present the scene (which is an instance of the GameScene class)
         skView.presentScene(scene)
 

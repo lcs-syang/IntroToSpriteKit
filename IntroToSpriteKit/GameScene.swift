@@ -22,6 +22,14 @@ class GameScene: SKScene {
         let background = SKSpriteNode(imageNamed: "sky_01")
         background.position = CGPoint(x:self.size.width / 2, y: self.size.height / 2)
         self.addChild(background)
+        
+        // Set up snow in the background
+        if let snow = SKEmitterNode(fileNamed: "Snow") {
+
+        // Position the node and add to scene – write the code to make this happen
+        snow.position = CGPoint(x: self.size.width / 2, y: self.size.height)
+        self.addChild(snow)
+        }
 
         // Add the sun
         let sun = SKSpriteNode(imageNamed: "sun")
@@ -48,7 +56,7 @@ class GameScene: SKScene {
         
         // define action for waiting
         let actionTwoSecondWait = SKAction.wait(forDuration: 2)
-        //let actionOneSecondWait = SKAction.wait(forDuration: 1)
+        let actionOneSecondWait = SKAction.wait(forDuration: 1)
         let actionThreeSecondWait = SKAction.wait(forDuration: 3)
         
         // Snowman 1
@@ -57,13 +65,14 @@ class GameScene: SKScene {
         snowman1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 30))
         self.addChild(snowman1)
         // Define a vector that describes an upward movement
-        let upThisMuch = CGVector(dx: 0, dy: 200)
+        let upThisMuch = CGVector(dx: 0, dy: 100)
         // Define an action that causes a node to move up for half a second
         let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0)
         // repeat upwards movement
-        //let actionRepeatUpwardsMovement = SKAction.repeatForever(actionUpwardsMovement)
+        let actionWaitThenUpwardsMovement = SKAction.sequence([actionTwoSecondWait, actionUpwardsMovement])
+        let actionRepeatWaitThenUpwardsMovement = SKAction.repeatForever(actionWaitThenUpwardsMovement)
         // repeat jump
-        snowman1.run(actionUpwardsMovement)
+        snowman1.run(actionRepeatWaitThenUpwardsMovement)
         
         // Snowman 2
         let snowman2 = SKSpriteNode(imageNamed: "snowman-1")
@@ -71,8 +80,10 @@ class GameScene: SKScene {
         snowman2.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height:30))
         self.addChild(snowman2)
         // wait two second and move up
-        let actionShortWaitThenMoveUp = SKAction.sequence([actionTwoSecondWait, actionUpwardsMovement])
-        snowman2.run(actionShortWaitThenMoveUp)
+        let actionShortWaitThenMoveUp = SKAction.sequence([actionThreeSecondWait, actionUpwardsMovement])
+        let actionRepeatShortWaitThenMoveUp = SKAction.repeatForever(actionShortWaitThenMoveUp)
+        snowman2.run(actionRepeatShortWaitThenMoveUp)
+        
         
         // Snowman 3
         let snowman3 = SKSpriteNode(imageNamed: "snowman-1")
@@ -80,7 +91,7 @@ class GameScene: SKScene {
         snowman3.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 30))
         self.addChild(snowman3)
         // move up right away at the same time with snowman 1
-        snowman3.run(actionUpwardsMovement)
+        snowman3.run(actionRepeatWaitThenUpwardsMovement)
         
         
         // Snowman 4
@@ -89,7 +100,8 @@ class GameScene: SKScene {
         snowman4.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 30))
         self.addChild(snowman4)
         // wait for 2 seconds and move up at the same time with snowman 2
-        snowman4.run(actionShortWaitThenMoveUp)
+        snowman4.run(actionRepeatShortWaitThenMoveUp)
+        
         
         // Get a reference to the mp3 file in the app bundle
         let backgroundMusicFilePath = Bundle.main.path(forResource: "sleigh-bells-excerpt.mp3", ofType: nil)!
@@ -108,57 +120,76 @@ class GameScene: SKScene {
         
         /// texts
         // H
-        let textH = SKLabelNode(fontNamed: "Helvetica Neue Light")
-        textH.fontSize = 48
-        textH.fontColor = .white
-        textH.text = "M"
-        textH.position = CGPoint(x: 400, y: 650)
-        textH.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
-        self.addChild(textH)
+        let textM = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        textM.fontSize = 48
+        textM.fontColor = .white
+        textM.text = "M"
+        textM.position = CGPoint(x: 350, y: 500)
+        textM.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
+        self.addChild(textM)
         let actionThreeSecondWaitThenMoveUp = SKAction.sequence([actionThreeSecondWait, actionUpwardsMovement])
-        textH.run(actionThreeSecondWaitThenMoveUp)
+        textM.run(actionThreeSecondWaitThenMoveUp)
         
         // E
         let textE = SKLabelNode(fontNamed: "Helvetica Neue Light")
         textE.fontSize = 48
         textE.fontColor = .white
         textE.text = "E"
-        textE.position = CGPoint(x: 435, y: 650)
+        textE.position = CGPoint(x: 385, y: 500)
         textE.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
-        textE.run(actionThreeSecondWait)
         self.addChild(textE)
+        let actionLongWaitThenMoveUp = SKAction.sequence([actionOneSecondWait, actionThreeSecondWaitThenMoveUp])
+        textE.run(actionLongWaitThenMoveUp)
         
         // R
         let textR = SKLabelNode(fontNamed: "Helvetica Neue Light")
         textR.fontSize = 48
         textR.fontColor = .white
         textR.text = "R"
-        textR.position = CGPoint(x: 465, y: 650)
+        textR.position = CGPoint(x: 415, y: 500)
         textR.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
-        textR.run(actionThreeSecondWait)
         self.addChild(textR)
+        let actionJumpAfterE = SKAction.sequence([actionOneSecondWait, actionLongWaitThenMoveUp])
+        textR.run(actionJumpAfterE)
         
         // R
         let textR1 = SKLabelNode(fontNamed: "Helvetica Neue Light")
         textR1.fontSize = 48
         textR1.fontColor = .white
         textR1.text = "R"
-        textR1.position = CGPoint(x: 495, y: 650)
+        textR1.position = CGPoint(x: 445, y: 500)
         textR1.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
-        textR1.run(actionThreeSecondWait)
         self.addChild(textR1)
+        let actionJumpAfterR = SKAction.sequence([actionOneSecondWait, actionJumpAfterE])
+        textR1.run(actionJumpAfterR)
         
         // Y
         let textY = SKLabelNode(fontNamed: "Helvetica Neue Light")
         textY.fontSize = 48
         textY.fontColor = .white
         textY.text = "Y"
-        textY.position = CGPoint(x: 525, y: 650)
+        textY.position = CGPoint(x: 475, y: 500)
         textY.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 30))
-        textY.run(actionThreeSecondWait)
         self.addChild(textY)
+        let actionJumpAfterR1 = SKAction.sequence([actionOneSecondWait, actionJumpAfterR])
+        textY.run(actionJumpAfterR1)
+        
+        // Word "Christmas"
+        let word = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        word.fontSize = 48
+        word.fontColor = .white
+        word.text = "CHRISTMAS"
+        word.position = CGPoint(x: 650, y:500)
+        word.physicsBody =  SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 25))
+        self.addChild(word)
+        let actionLastJump = SKAction.sequence([actionOneSecondWait, actionJumpAfterR1])
+        word.run(actionLastJump)
         
         
+        let actionWaitTenSeconds = SKAction.wait(forDuration: 10)
+        let actionDropSentence = SKAction.run(addSentence)
+        let sequenceWaitThenDrop = SKAction.sequence([actionWaitTenSeconds, actionDropSentence])
+        self.run(sequenceWaitThenDrop)
         
             
         let wordsPhysicsBodyLocation = CGRect(x: 0, y: 400, width: 800, height: 600)
@@ -166,6 +197,17 @@ class GameScene: SKScene {
         
         
 
+    }
+    
+    func addSentence() {
+        // Class name
+        let sentence = SKLabelNode(fontNamed: "Helvetica Neue Light")
+        sentence.fontSize = 24
+        sentence.fontColor = .black
+        sentence.text = "Grade 12 AP Computer Science Class"
+        sentence.position = CGPoint(x: 500, y: 600)
+        sentence.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 30))
+        self.addChild(sentence)
     }
     
     // This runs before each frame is rendered
